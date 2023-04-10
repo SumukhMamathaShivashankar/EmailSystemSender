@@ -32,7 +32,7 @@ const postMail = (req, res) => {
         body: {
             name : userName,
             intro: `This is a confirmation email that ${userEmail} is now registered with ScriptChain Health`,
-            outro: "Hope you have a good one :) "
+            outro: "Hope you have a good one :)"
         }
     }
 
