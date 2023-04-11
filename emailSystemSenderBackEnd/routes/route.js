@@ -1,11 +1,24 @@
 const router = require('express').Router();
 
-const { getbill, postMail } = require('../controller/appController.js')
-const { getAllData } = require('../index.js')
-const { getDataByIndex } = require('../index.js')
-const { postData } = require('../index.js')
-const { updateData } = require('../index.js')
-const { deleteData } = require('../index.js')
+const {
+    getbill,
+    postMail
+} = require('../controller/appController.js')
+const {
+    getAllData
+} = require('../index.js')
+const {
+    getDataByIndex
+} = require('../index.js')
+const {
+    postData
+} = require('../index.js')
+const {
+    updateData
+} = require('../index.js')
+const {
+    deleteData
+} = require('../index.js')
 
 
 /** HTTP Reqeust */

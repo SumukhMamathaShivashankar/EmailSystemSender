@@ -1,17 +1,26 @@
 const nodemailer = require('nodemailer');
 const Mailgen = require('mailgen');
 
-const { EMAIL, PASSWORD } = require('../env.js')
+const {
+    EMAIL,
+    PASSWORD
+} = require('../env.js')
 
 
-/** send mail from gmail account */
+/**
+ * the below code is intended to send email to the user
+ *  with the email and name received from the front end 
+ * by forming a mail body and then sending it
+ * @param 
+ * @return
+ */
 const postMail = (req, res) => {
 
     const userEmail = req.body.userEmail;
     const userName = req.body.userName;
     let config = {
-        service : 'gmail',
-        auth : {
+        service: 'gmail',
+        auth: {
             user: EMAIL,
             pass: PASSWORD
         }
@@ -21,16 +30,16 @@ const postMail = (req, res) => {
 
     let MailGenerator = new Mailgen({
         theme: "default",
-        product : {
+        product: {
             name: "Sumukh M S",
-            link : 'https://mailgen.js/'
+            link: 'https://mailgen.js/'
         }
     })
 
     let response = {
-        
+
         body: {
-            name : userName,
+            name: userName,
             intro: `This is a confirmation email that ${userEmail} is now registered with ScriptChain Health`,
             outro: "Hope you have a good one :)"
         }
@@ -39,8 +48,8 @@ const postMail = (req, res) => {
     let mail = MailGenerator.generate(response)
 
     let message = {
-        from : EMAIL,
-        to : userEmail,
+        from: EMAIL,
+        to: userEmail,
         subject: "Confirmation Email",
         html: mail
     }
@@ -50,7 +59,9 @@ const postMail = (req, res) => {
             msg: "email sent successfully!"
         })
     }).catch(error => {
-        return res.status(500).json({ error })
+        return res.status(500).json({
+            error
+        })
     })
 
     // res.status(201).json("getBill Successfully...!");

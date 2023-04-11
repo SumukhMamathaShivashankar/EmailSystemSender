@@ -19,7 +19,6 @@ export class CreateuserComponent implements OnInit {
     this.getIdParams = this.router.snapshot.paramMap.get('id');
     if (this.getIdParams) {
       this.api.getSingleData(this.getIdParams).subscribe((res) => {
-        console.log(res, 'selected update date');
         this.createUsersForm.patchValue({
           fullName: res.data[0].fullName,
           email: res.data[0].email,
@@ -45,10 +44,8 @@ export class CreateuserComponent implements OnInit {
 
   userSubmit() {
     if (this.createUsersForm.valid) {
-      // console.log(this.createUsersForm.value);
       this.api.createUser(this.createUsersForm.value).subscribe(
         (res) => {
-          console.log(res, 'Data added');
           this.successMsg = res.message;
         },
         (error) => {
@@ -79,7 +76,6 @@ export class CreateuserComponent implements OnInit {
         .updateData(this.createUsersForm.value, this.getIdParams)
         .subscribe(
           (res) => {
-            console.log(res, 'Data updated');
             this.successMsg = res.value;
           },
           (error) => {
