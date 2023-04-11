@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ServiceService } from '../service.service';
+import { ServiceService } from '../../services/service.service';
 
 @Component({
   selector: 'app-userinfo',
@@ -16,7 +16,7 @@ export class UserinfoComponent implements OnInit{
   userName:any;
   ngOnInit(): void {
     this.api.getUser().subscribe((result)=>{
-      console.log('get user by ID',result)
+      // console.log('get user by ID',result)
       this.users=result.data;
     })
   }
@@ -30,8 +30,10 @@ export class UserinfoComponent implements OnInit{
   }
   getAllData(){
     this.api.getUser().subscribe((res)=>{
-      console.log('getting all data',res);
+      // console.log('getting all data',res);
       this.users=res.data;
+    },(error)=>{
+      console.error(error);
     })
   }
   emailUser(id:any,fullName:any,email:any){
