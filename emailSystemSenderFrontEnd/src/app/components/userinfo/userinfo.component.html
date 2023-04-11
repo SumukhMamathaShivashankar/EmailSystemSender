@@ -3,6 +3,10 @@
     <strong>{{successMsg}}</strong> 
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
+  <div *ngIf="emailSuccessMsg" class="alert alert-success alert-dismissible fade show" role="alert">
+    <strong>Email sent successfully</strong> 
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
     <table class="table table-dark table-striped">
         <thead class="thead-dark">
           <tr>
