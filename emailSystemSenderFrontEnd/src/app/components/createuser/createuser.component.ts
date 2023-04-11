@@ -34,7 +34,7 @@ export class CreateuserComponent implements OnInit {
   });
   userSubmit() {
     if (this.createUsersForm.valid) {
-      console.log(this.createUsersForm.value);
+      // console.log(this.createUsersForm.value);
       this.api.createUser(this.createUsersForm.value).subscribe(
         (res) => {
           console.log(res, 'Data added');
@@ -47,6 +47,14 @@ export class CreateuserComponent implements OnInit {
     } else {
       this.errMsg = 'Please enter all the fields';
     }
+    const jsonBody:JSON = <JSON><any>{
+      "userEmail": this.createUsersForm.value.email,
+      "userName":this.createUsersForm.value.fullName
+    }
+    this.api.sendEmail(jsonBody).subscribe((res) => {
+      console.log(res, 'Data added')
+      this.successMsg = res.message;
+    })
   }
   //update User
   updateUser() {
