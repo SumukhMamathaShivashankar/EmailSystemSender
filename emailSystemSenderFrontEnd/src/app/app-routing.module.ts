@@ -4,14 +4,13 @@ import { CreateuserComponent } from './components/createuser/createuser.componen
 import { UserinfoComponent } from './components/userinfo/userinfo.component';
 
 const routes: Routes = [
-  {path:'userinfo',component:UserinfoComponent},
-  {path:'createuser/:id', component:CreateuserComponent},
-  {path:'createuser',component:CreateuserComponent},
-  
+  { path: 'userinfo', component: UserinfoComponent },
+  { path: 'createuser/:id', component: CreateuserComponent },
+  { path: 'createuser', component: CreateuserComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

@@ -14,6 +14,7 @@ export class CreateuserComponent implements OnInit {
   errMsg: any;
   successMsg: any;
   getIdParams: any;
+  emailSuccessMsg: any;
   ngOnInit(): void {
     this.getIdParams = this.router.snapshot.paramMap.get('id');
     if (this.getIdParams) {
@@ -32,6 +33,16 @@ export class CreateuserComponent implements OnInit {
     email: new FormControl('', Validators.required),
     phone: new FormControl('', Validators.required),
   });
+  /**
+   * the below code is intended to add user and send a email
+   * after clicking the button "add user". once the button is clicked the
+   * userSubmit button is called and method calls two api's to backed one
+   * to add user to the data base and the second to send email to the user
+   * @param
+   * @param
+   * @return
+   */
+
   userSubmit() {
     if (this.createUsersForm.valid) {
       // console.log(this.createUsersForm.value);
@@ -47,24 +58,34 @@ export class CreateuserComponent implements OnInit {
     } else {
       this.errMsg = 'Please enter all the fields';
     }
-    const jsonBody:JSON = <JSON><any>{
-      "userEmail": this.createUsersForm.value.email,
-      "userName":this.createUsersForm.value.fullName
-    }
+    const jsonBody: JSON = <JSON>(<any>{
+      userEmail: this.createUsersForm.value.email,
+      userName: this.createUsersForm.value.fullName,
+    });
     this.api.sendEmail(jsonBody).subscribe((res) => {
-      console.log(res, 'Data added')
-      this.successMsg = res.message;
-    })
+      this.emailSuccessMsg = true;
+    });
   }
-  //update User
+  /**
+   * the below code is intended to update the user information
+   * after clicking the button "update user". This button appears
+   *  only when the variable getParamsId has a value. Once the button is
+   * clicked the api to update the user information is called.
+   */
+
   updateUser() {
     if (this.createUsersForm.valid) {
       this.api
         .updateData(this.createUsersForm.value, this.getIdParams)
-        .subscribe((res) => {
-          console.log(res, 'Data updated');
-          this.successMsg = res.message;
-        });
+        .subscribe(
+          (res) => {
+            console.log(res, 'Data updated');
+            this.successMsg = res.value;
+          },
+          (error) => {
+            console.error(error);
+          }
+        );
     } else {
       this.errMsg = 'Please enter all fields';
     }

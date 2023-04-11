@@ -9,24 +9,16 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ServiceService } from './services/service.service';
 
-
-
 @NgModule({
-  declarations: [
-    AppComponent,
-    UserinfoComponent,
-    CreateuserComponent,
-    
-
-  ],
+  declarations: [AppComponent, UserinfoComponent, CreateuserComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [ServiceService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

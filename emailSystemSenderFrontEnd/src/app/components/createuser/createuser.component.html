@@ -4,6 +4,10 @@
             <strong>{{errMsg}}</strong> 
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
+        <div *ngIf="emailSuccessMsg" class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Email sent successfully</strong> 
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
         <div *ngIf="successMsg" class="alert alert-success alert-dismissible fade show" role="alert">
             <strong>{{successMsg}}</strong> 
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
